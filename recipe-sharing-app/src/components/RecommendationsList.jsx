@@ -19,3 +19,4 @@ const RecommendationsList = () => {
         </div>
     );
 };
+export default RecommendationsList;
