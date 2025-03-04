@@ -4,6 +4,7 @@ const useRecipeStore = create(set => ({
     recipes: [],
     searchTerm: '',
     filteredRecipes: [],
+    // setRecipes
 
     // Action to add a recipe
     addRecipe: (newRecipe) => set(state => ({
