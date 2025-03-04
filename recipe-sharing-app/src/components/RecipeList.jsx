@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import useRecipeStore from '../store/recipeStore';
 
 const RecipeList = () => {
@@ -20,6 +21,8 @@ const RecipeList = () => {
                         <h3>{recipe.title}</h3>
                         <p>{recipe.ingredients.join(', ')}</p>
                         <p>Prep Time: {recipe.prepTime} minutes</p>
+                        {/* Use Link to navigate to the recipe details page */}
+                        <Link to={`/recipes/${recipe.id}`}>View Details</Link>
                     </div>
                 ))
             ) : (
