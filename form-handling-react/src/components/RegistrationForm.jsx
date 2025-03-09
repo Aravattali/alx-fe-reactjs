@@ -33,19 +33,34 @@ const RegistrationForm = () => {
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Username:</label>
-                <input type="text" name="username" value={formData.username} onChange={handleChange} />
+                <input
+                    type="text"
+                    name="username"
+                    value={formData.username}  // ✅ Corrected
+                    onChange={handleChange}
+                />
                 {errors.username && <p>{errors.username}</p>}
             </div>
 
             <div>
                 <label>Email:</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} />
+                <input
+                    type="email"
+                    name="email"
+                    value={formData.email}  // ✅ Corrected
+                    onChange={handleChange}
+                />
                 {errors.email && <p>{errors.email}</p>}
             </div>
 
             <div>
                 <label>Password:</label>
-                <input type="password" name="password" value={formData.password} onChange={handleChange} />
+                <input
+                    type="password"
+                    name="password"
+                    value={formData.password}  // ✅ Corrected
+                    onChange={handleChange}
+                />
                 {errors.password && <p>{errors.password}</p>}
             </div>
 
