@@ -3,11 +3,11 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import ProfileDetails from './components/ProfileDetails';
+import ProfileDetails from './pages/ProfileDetails';
 import ProfileSettings from './pages/ProfileSettings';
 import BlogPost from './pages/BlogPost';
 import ProtectedRoute from './components/ProtectedRoute';
-
+import Profile from './components/Profile';
 const App = () => {
   return (
     <Router>
