@@ -7,6 +7,8 @@ const RegistrationForm = () => {
         password: "",
     });
 
+    const { username, email, password } = formData; // ✅ Destructuring for direct variable names
+
     const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
@@ -15,9 +17,9 @@ const RegistrationForm = () => {
 
     const validate = () => {
         let newErrors = {};
-        if (!formData.username) newErrors.username = "Username is required";
-        if (!formData.email) newErrors.email = "Email is required";
-        if (!formData.password) newErrors.password = "Password is required";
+        if (!username) newErrors.username = "Username is required";
+        if (!email) newErrors.email = "Email is required";
+        if (!password) newErrors.password = "Password is required";
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -33,34 +35,19 @@ const RegistrationForm = () => {
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Username:</label>
-                <input
-                    type="text"
-                    name="username"
-                    value={formData.username}  // ✅ Corrected
-                    onChange={handleChange}
-                />
+                <input type="text" name="username" value={username} onChange={handleChange} />
                 {errors.username && <p>{errors.username}</p>}
             </div>
 
             <div>
                 <label>Email:</label>
-                <input
-                    type="email"
-                    name="email"
-                    value={formData.email}  // ✅ Corrected
-                    onChange={handleChange}
-                />
+                <input type="email" name="email" value={email} onChange={handleChange} />
                 {errors.email && <p>{errors.email}</p>}
             </div>
 
             <div>
                 <label>Password:</label>
-                <input
-                    type="password"
-                    name="password"
-                    value={formData.password}  // ✅ Corrected
-                    onChange={handleChange}
-                />
+                <input type="password" name="password" value={password} onChange={handleChange} />
                 {errors.password && <p>{errors.password}</p>}
             </div>
 
