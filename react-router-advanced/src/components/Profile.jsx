@@ -12,7 +12,7 @@ const Profile = () => {
                     <li><Link to="settings">Profile Settings</Link></li>
                 </ul>
             </nav>
-            <Outlet /> {/* This will render the nested route components */}
+            <Outlet /> {/* This will render the nested routes like ProfileDetails or ProfileSettings */}
         </div>
     );
 };
