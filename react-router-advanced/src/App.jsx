@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import ProfileDetails from './pages/ProfileDetails';
+import ProfileDetails from './components/ProfileDetails';
 import ProfileSettings from './pages/ProfileSettings';
 import BlogPost from './pages/BlogPost';
 import ProtectedRoute from './components/ProtectedRoute';
