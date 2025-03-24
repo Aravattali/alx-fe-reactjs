@@ -1,23 +1,28 @@
 import axios from 'axios';
 
-const GITHUB_API_URL = 'https://api.github.com/search/users';
+// GitHub API endpoint for searching users with query parameters
+const GITHUB_SEARCH_URL = 'https://api.github.com/search/users';
 
-export const fetchUserData = async(username, location, minRepos) => {
-    try {
-        const query = buildSearchQuery(username, location, minRepos);
-        const response = await axios.get(`${GITHUB_API_URL}?q=${query}`);
-        return response.data.items; // Return the list of users
-    } catch (error) {
-        console.error('Error fetching user:', error);
-        return null;
+// This function will now accept additional parameters for location and minRepositories
+export const fetchUserData = async(username = '', location = '', minRepos = 0) => {
+        try {
+            // Build the query string with optional filters
+            let query = `in:login ${username ? `+${username}` : ''}`;
+
+    if (location) {
+      query += `+location:${location}`;
     }
-};
 
-// Build the search query based on input parameters
-const buildSearchQuery = (username, location, minRepos) => {
-    let query = '';
-    if (username) query += `user:${username} `;
-    if (location) query += `location:${location} `;
-    if (minRepos) query += `repos:>=${minRepos} `;
-    return query.trim().replace(/\s+/g, '+'); // Replace spaces with '+' for URL format
+    if (minRepos > 0) {
+      query += `+repos:>=${minRepos}`;
+    }
+
+    const response = await axios.get(`${GITHUB_SEARCH_URL}?q=${query}`);
+    
+    // Return the items (users) from the search response
+    return response.data.items;
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    return null;
+  }
 };
