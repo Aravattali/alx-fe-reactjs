@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // GitHub API endpoint for searching users with query parameters
-const GITHUB_SEARCH_URL = 'https://api.github.com/search/users';
+const GITHUB_SEARCH_URL = "https://api.github.com/search/users?q";
 
 // This function will now accept additional parameters for location and minRepositories
 export const fetchUserData = async(username = '', location = '', minRepos = 0) => {
