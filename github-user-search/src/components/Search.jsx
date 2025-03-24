@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { fetchUserData } from '../services/api';
 import { fetchUserData } from '../services/githubService';
 
 function Search({ setUserData }) {
@@ -36,9 +35,29 @@ function Search({ setUserData }) {
                     {loading ? 'Loading...' : 'Search'}
                 </button>
             </form>
+
+            {/* Error Message */}
             {error && <p>{error}</p>}
+
+            {/* Display user data if available */}
+            {username && !error && !loading && (
+                <div>
+                    <h3>User Information</h3>
+                    <img
+                        src={setUserData?.avatar_url}
+                        alt={setUserData?.login}
+                        width="100"
+                    />
+                    <p>Username: {setUserData?.login}</p>
+                    <p>Name: {setUserData?.name}</p>
+                    <a href={setUserData?.html_url} target="_blank" rel="noopener noreferrer">
+                        View GitHub Profile
+                    </a>
+                </div>
+            )}
         </div>
     );
 }
+
 
 export default Search;
