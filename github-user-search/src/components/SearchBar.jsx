@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
-import { fetchUser } from '../services/api';
+import { fetchUserData } from '../services/api';
 
 function SearchBar({ setUserData }) {
     const [username, setUsername] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleSearch = async () => {
-        const data = await fetchUser(username);
-        setUserData(data);
+        setLoading(true);
+        setError(null);
+        const data = await fetchUserData(username);
+        if (data) {
+            setUserData(data);
+        } else {
+            setError("Looks like we can't find the user");
+        }
+        setLoading(false);
     };
 
     return (
@@ -17,7 +26,10 @@ function SearchBar({ setUserData }) {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
             />
-            <button onClick={handleSearch}>Search</button>
+            <button onClick={handleSearch} disabled={loading}>
+                {loading ? 'Loading...' : 'Search'}
+            </button>
+            {error && <p>{error}</p>}
         </div>
     );
 }
