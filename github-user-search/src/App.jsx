@@ -1,19 +1,3 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </Router>
-  );
-}
-
-
-
-// src/components/Home.jsx
 function Home() {
   return (
     <div>
@@ -23,6 +7,7 @@ function Home() {
   );
 }
 
+export default Home;
 
 // src/services/api.js
 const GITHUB_API_URL = 'https://api.github.com/users';
@@ -39,4 +24,19 @@ export const fetchUser = async (username) => {
     return null;
   }
 };
-export default Home;
+
+// src/App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
