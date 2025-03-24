@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { fetchUserData } from '../services/githubService';
+import UserProfile from './UserProfile'; // Import the UserProfile component
 
 function Search({ setUserData }) {
     const [username, setUsername] = useState('');
@@ -7,6 +8,7 @@ function Search({ setUserData }) {
     const [minRepos, setMinRepos] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [users, setUsers] = useState([]); // To store the list of users from the API
 
     const handleSearch = async (e) => {
         e.preventDefault(); // Prevent form submission and page reload
@@ -17,9 +19,9 @@ function Search({ setUserData }) {
 
         const data = await fetchUserData(username, location, minRepos);
         if (data) {
-            setUserData(data);
+            setUsers(data); // Store the list of users
         } else {
-            setError("Looks like we cant find the user");
+            setError("Looks like we can't find the user");
         }
         setLoading(false);
     };
@@ -74,9 +76,21 @@ function Search({ setUserData }) {
 
             {/* Error Message */}
             {error && <p className="text-red-500 text-center mt-4">{error}</p>}
+
+            {/* Display the list of users */}
+            <div className="mt-8">
+                {users.length > 0 ? (
+                    users.map((user) => (
+                        <UserProfile key={user.id} user={user} />
+                    ))
+                ) : (
+                    <p className="text-gray-500 text-center">No users found</p>
+                )}
+            </div>
         </div>
     );
 }
 
 export default Search;
+//Looks like we cant find the user
 
